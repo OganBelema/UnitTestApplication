@@ -1,16 +1,28 @@
 package com.oganbelema.unittestapplication
 
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class Engine(var temperature: Double = 15.0,
              var isTurnedOn: Boolean = false){
 
-    suspend fun turnOn() {
+    suspend fun turnOn(): Flow<Double> {
         isTurnedOn = true
 
-        delay(6000)
+        return flow {
+            delay(2000)
+            temperature = 25.0
+            emit(temperature)
 
-        temperature = 95.0
+            delay(2000)
+            temperature = 50.0
+            emit(temperature)
+
+            delay(2000)
+            temperature = 95.0
+            emit(temperature)
+        }
     }
 
     fun turnOff() {
