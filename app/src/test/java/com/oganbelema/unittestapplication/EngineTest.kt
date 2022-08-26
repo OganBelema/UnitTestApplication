@@ -18,6 +18,8 @@ class EngineTest {
 
     @Test
     fun engineTurnsOff() {
+        engine.turnOn()
+
         engine.turnOff()
 
         assertEquals(false, engine.isTurnedOn)
