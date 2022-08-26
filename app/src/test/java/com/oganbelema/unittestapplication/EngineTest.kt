@@ -6,14 +6,14 @@ import org.junit.Test
 
 class EngineTest {
 
-    private val engine = Engine(2000, 100, 15, false)
+    private val engine = Engine(15.0)
 
     @Test
     fun engineTurnsOn() {
         engine.turnOn()
 
         assertEquals(true, engine.isTurnedOn)
-        assertEquals(95, engine.temperature)
+        assertEquals(95.0, engine.temperature, 0.0)
     }
 
     @Test
@@ -23,6 +23,6 @@ class EngineTest {
         engine.turnOff()
 
         assertEquals(false, engine.isTurnedOn)
-        assertEquals(15, engine.temperature)
+        assertEquals(15.0, engine.temperature, 0.0)
     }
 }
