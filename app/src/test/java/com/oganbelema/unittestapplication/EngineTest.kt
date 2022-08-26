@@ -1,6 +1,7 @@
 package com.oganbelema.unittestapplication
 
 import com.example.outsideintddexample.acceptancetests.MainCoroutineScopeRule
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -19,7 +20,15 @@ class EngineTest {
         engine.turnOn()
 
         assertEquals(true, engine.isTurnedOn)
-        assertEquals(95.0, engine.temperature, 0.0)
+    }
+
+    @Test
+    fun riseTemperatureGraduallyWhenEngineTurnedOn() = runBlockingTest {
+        val flow = engine.turnOn()
+
+        val actual = flow.toList()
+
+        assertEquals(listOf(25.0, 50.0, 95.0), actual)
     }
 
     @Test
