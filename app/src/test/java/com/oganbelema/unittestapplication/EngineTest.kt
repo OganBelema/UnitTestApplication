@@ -1,6 +1,9 @@
 package com.oganbelema.unittestapplication
 
+import com.example.outsideintddexample.acceptancetests.MainCoroutineScopeRule
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
+import org.junit.Rule
 import org.junit.Test
 
 
@@ -8,8 +11,11 @@ class EngineTest {
 
     private val engine = Engine(15.0)
 
+    @get:Rule
+    var coroutinesTestRule = MainCoroutineScopeRule()
+
     @Test
-    fun engineTurnsOn() {
+    fun engineTurnsOn() = runBlockingTest {
         engine.turnOn()
 
         assertEquals(true, engine.isTurnedOn)
@@ -17,7 +23,7 @@ class EngineTest {
     }
 
     @Test
-    fun engineTurnsOff() {
+    fun engineTurnsOff() = runBlockingTest {
         engine.turnOn()
 
         engine.turnOff()
