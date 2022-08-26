@@ -10,7 +10,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
-class CarFeatureText {
+class CarFeatureTest {
 
     private val engine = Engine(15.0)
 
